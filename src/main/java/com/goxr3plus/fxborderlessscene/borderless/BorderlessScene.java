@@ -150,6 +150,15 @@ public class BorderlessScene extends Scene {
 	}
 
 	/**
+	 * Disable/enable double click maximize. Enabled by default.
+	 *
+	 * @param bool false to disable, true to enable.
+	 */
+	public void setDoubleClickMaximizeEnabled(boolean bool) {
+		controller.setDoubleClickMaximizeEnabled(bool);
+	}
+
+	/**
 	 * Maximized property.
 	 *
 	 * @return Maximized property
@@ -201,6 +210,15 @@ public class BorderlessScene extends Scene {
 	 */
 	public boolean isSnapEnabled() {
 		return controller.snapProperty().get();
+	}
+
+	/**
+	 * True if double click maximize is enabled or false if not
+	 *
+	 * @return True if doucle click maximize is enabled or false if not
+	 */
+	public boolean isDoubleClickMaximize() {
+		return controller.doubleClickMaximizeProperty().get();
 	}
 
 	/**

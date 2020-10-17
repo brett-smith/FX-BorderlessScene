@@ -43,6 +43,9 @@ public class BorderlessController {
 	/** The snap enabled */
 	private SimpleBooleanProperty snap;
 
+	/** The double click maximize enabled */
+	private SimpleBooleanProperty doubleClickMaximize;
+
 	/** The snapped. */
 	private boolean snapped;
 
@@ -95,6 +98,7 @@ public class BorderlessController {
 		maximized = new SimpleBooleanProperty(false);
 		resizable = new SimpleBooleanProperty(true);
 		snap = new SimpleBooleanProperty(true);
+		doubleClickMaximize = new SimpleBooleanProperty(true);
 		snapped = false;
 
 	}
@@ -135,6 +139,15 @@ public class BorderlessController {
 	 */
 	public BooleanProperty snapProperty() {
 		return snap;
+	}
+
+	/**
+	 * Double click maximize property.
+	 *
+	 * @return Double click maximize property
+	 */
+	public BooleanProperty doubleClickMaximizeProperty() {
+		return doubleClickMaximize;
 	}
 
 	/**
@@ -407,7 +420,7 @@ public class BorderlessController {
 
 		// Maximize on double click.
 		node.setOnMouseClicked(m -> {
-			if (snap.get() && (MouseButton.PRIMARY.equals(m.getButton())) && (m.getClickCount() == 2))
+			if (doubleClickMaximize.get() && (MouseButton.PRIMARY.equals(m.getButton())) && (m.getClickCount() == 2))
 				maximize();
 		});
 
@@ -636,6 +649,15 @@ public class BorderlessController {
 		if (!bool && snapped) {
 			snapOff();
 		}
+	}
+
+	/**
+	 * Disable/enable the double click maximize property of your stage. Enabled by default.
+	 *
+	 * @param bool false to disable, true to enable.
+	 */
+	protected void setDoubleClickMaximizeEnabled(boolean bool) {
+		doubleClickMaximize.set(bool);
 	}
 
 	/**
