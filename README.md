@@ -1,5 +1,4 @@
-### [![AlexKent](https://user-images.githubusercontent.com/20374208/75432997-f5422100-5957-11ea-87a2-164eb98d83ef.png)](https://www.minepi.com/AlexKent) Support me joining PI Network app with invitation code [AlexKent](https://www.minepi.com/AlexKent) [![AlexKent](https://user-images.githubusercontent.com/20374208/75432997-f5422100-5957-11ea-87a2-164eb98d83ef.png)](https://www.minepi.com/AlexKent) 
-   
+ 
 ---
 
 <h3 align="center" > FX-BorderlessScene ( Library )</h3>
@@ -15,23 +14,13 @@
 
 --- 
 
-[![Latest Version](https://img.shields.io/github/release/goxr3plus/FX-BorderlessScene.svg?style=flat-square)](https://github.com/goxr3plus/FX-BorderlessScene/releases)
-[![GitHub contributors][contributors-image]][contributors-url]
-[![HitCount](http://hits.dwyl.io/goxr3plus/FX-BorderlessScene.svg)](http://hits.dwyl.io/goxr3plus/FX-BorderlessScene)
-[![Total Downloads](https://img.shields.io/github/downloads/goxr3plus/FX-BorderlessScene/total.svg)](https://github.com/goxr3plus/FX-BorderlessScene/releases)
+## About This Fork
 
-
-[contributors-url]: https://github.com/goxr3plus/FX-BorderlessScene/graphs/contributors
-[contributors-image]: https://img.shields.io/github/contributors/goxr3plus/FX-BorderlessScene.svg
-
-
-
-![java_2019-04-30_17-43-54](https://user-images.githubusercontent.com/20374208/56970311-8b0df380-6b6f-11e9-83f1-65a5e4a03b8a.png)
-
-### Donate if you love me  
-
-<a href="https://patreon.com/preview/8adae1b75d654b2899e04a9e1111f0eb" title="Donate to this project using Patreon"><img src="https://img.shields.io/badge/patreon-donate-yellow.svg" alt="Patreon donate button" /></a>
-<a href="https://www.paypal.me/GOXR3PLUSCOMPANY" title="Donate to this project using Paypal"><img src="https://img.shields.io/badge/paypal-donate-yellow.svg" alt="PayPal donate button" /></a>
+This fork of (https://github.com/goxr3plus/FX-BorderlessScene)[FX-BorderlessScene] was created to :-
+ 
+  * Be compatible with Java 9 and the module system.
+  * Fix a couple of bugs.
+  * Get it into Maven central.
 
 ## Features
 - **Done ✔️**
@@ -44,29 +33,15 @@
   - Multiple Screens Support
   - Fix lagging on resizing
 
-This project has been forked and further developed from [this](https://github.com/NicolasSenetLarson/BorderlessScene) github repository
-
 ### Use it with Maven , Gradle etc ... with 
 
-https://jitpack.io/#goxr3plus/FX-BorderlessScene
-
-Add JitPack on your repositories :
-``` XML
-<repositories>
-   <repository>
-     <id>jitpack.io</id>
-     <url>https://jitpack.io</url>
-   </repository>
-</repositories>
-```
-
-Add the dependency : 
+This library is in Maven Central, so just add the dependency : 
   
 ``` XML
 <dependency>
-  <groupId>com.github.goxr3plus</groupId>
+  <groupId>uk.co.bithatch</groupId>
   <artifactId>FX-BorderlessScene</artifactId>
-  <version>4.4.0</version>
+  <version>5.0.0-SNAPSHOT</version>
 </dependency>
 ```
 
@@ -166,7 +141,7 @@ public class Main extends Application {
 
 ```
 
-### [XR3Player](https://github.com/goxr3plus/XR3Player) is using this Library 
+### [XR3Player](https://github.com/goxr3plus/XR3Player) is using the original version of Library 
 | Video|
 |:-:|
 | [![First](https://user-images.githubusercontent.com/20374208/48313813-34fdc180-e5ca-11e8-9da7-c6148dc0cbe5.png)](https://www.youtube.com/watch?v=7Hai7cavmUY)  |
