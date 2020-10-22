@@ -5,7 +5,7 @@
 
 	<groupId>uk.co.bithatch</groupId>
 	<artifactId>FX-BorderlessScene</artifactId>
-	<version>5.0.0-SNAPSHOT</version>
+	<version>5.0.0</version>
 	<name>FX-BorderlessScene</name>
 	<description>Undecorated JavaFX Scene with implemented move, resize, minimise, maximise, close and Windows Aero Snap controls. This
 	versions has been modularised so will only work on Java 9 or higher.</description>
@@ -43,11 +43,11 @@
 
 	<distributionManagement>
 		<snapshotRepository>
-			<id>ossrh-sshtools</id>
+			<id>ossrh-bithatch</id>
 			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
 		</snapshotRepository>
 		<repository>
-			<id>ossrh-sshtools</id>
+			<id>ossrh-bithatch</id>
 			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
 		</repository>
 	</distributionManagement>
@@ -166,7 +166,7 @@
 				<version>1.6.8</version>
 				<extensions>true</extensions>
 				<configuration>
-					<serverId>ossrh-sshtools</serverId>
+					<serverId>ossrh-bithatch</serverId>
 					<nexusUrl>https://oss.sonatype.org/</nexusUrl>
 					<autoReleaseAfterClose>true</autoReleaseAfterClose>
 				</configuration>

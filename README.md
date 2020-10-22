@@ -41,7 +41,7 @@ This library is in Maven Central, so just add the dependency :
 <dependency>
   <groupId>uk.co.bithatch</groupId>
   <artifactId>FX-BorderlessScene</artifactId>
-  <version>5.0.0-SNAPSHOT</version>
+  <version>5.0.0</version>
 </dependency>
 ```
 
