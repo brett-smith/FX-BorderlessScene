@@ -227,9 +227,9 @@ public class BorderlessScene extends Scene {
 	 * @return instance of Delta class. Delta.x = width, Delta.y = height.
 	 */
 	public Delta getWindowedSize() {
-		if (controller.prevSize.x == null)
+		if (controller.prevSize.x == 0)
 			controller.prevSize.x = stage.getWidth();
-		if (controller.prevSize.y == null)
+		if (controller.prevSize.y == 0)
 			controller.prevSize.y = stage.getHeight();
 		return controller.prevSize;
 	}
@@ -240,9 +240,9 @@ public class BorderlessScene extends Scene {
 	 * @return instance of Delta class. Use Delta.x and Delta.y.
 	 */
 	public Delta getWindowedPositon() {
-		if (controller.prevPos.x == null)
+		if (controller.prevPos.x == 0)
 			controller.prevPos.x = stage.getX();
-		if (controller.prevPos.y == null)
+		if (controller.prevPos.y == 0)
 			controller.prevPos.y = stage.getY();
 		return controller.prevPos;
 	}
