@@ -88,6 +88,8 @@ public class BorderlessController {
 	 * Transparent Window used to show how the window will be resized
 	 */
 	private TransparentWindow transparentWindow;
+	private boolean moving;
+	private boolean resizing;
 
 	/**
 	 * The constructor.
@@ -252,7 +254,7 @@ public class BorderlessController {
 
 		// Record drag deltas on press.
 		node.setOnMousePressed(m -> {
-			if (m.isPrimaryButtonDown()) {
+			if (m.isPrimaryButtonDown() && !resizing) {
 				delta.x = m.getSceneX(); //getX()
 				delta.y = m.getSceneY(); //getY()
 
@@ -268,15 +270,18 @@ public class BorderlessController {
 
 				eventSource.x = m.getScreenX();
 				eventSource.y = node.prefHeight(stage.getHeight());
+				
+				moving = true;
 			}
 		});
 
 		// Dragging moves the application around.
 		node.setOnMouseDragged(m -> {
-			if (m.isPrimaryButtonDown()) {
+			if (m.isPrimaryButtonDown() && moving) {
 
 				// Move x axis.
-				stage.setX(m.getScreenX() - delta.x);
+				if(delta.x != null)
+					stage.setX(m.getScreenX() - delta.x);
 
 				if (snapped) {
 					if (m.getScreenY() > eventSource.y) {
@@ -287,7 +292,8 @@ public class BorderlessController {
 					}
 				} else {
 					// Move y axis.
-					stage.setY(m.getScreenY() - delta.y);
+					if(delta.y != null)
+						stage.setY(m.getScreenY() - delta.y);
 				}
 
 				// Aero Snap off.
@@ -428,9 +434,11 @@ public class BorderlessController {
 		node.setOnMouseReleased(m -> {
 
 			try {
-				if (!snap.get()) {
+				if (!moving || !snap.get()) {
 					return;
 				}
+				
+				moving = false;
 
 				if ((MouseButton.PRIMARY.equals(m.getButton())) && (m.getScreenX() != eventSource.x)) {
 					Rectangle2D screen = Screen.getScreensForRectangle(m.getScreenX(), m.getScreenY(), 1, 1).get(0).getVisualBounds();
@@ -523,7 +531,7 @@ public class BorderlessController {
 		});
 
 		pane.setOnMouseDragged(m -> {
-			if (m.isPrimaryButtonDown()) {
+			if (m.isPrimaryButtonDown() && !moving) {
 				double width = stage.getWidth();
 				double height = stage.getHeight();
 
@@ -572,7 +580,7 @@ public class BorderlessController {
 
 		// Record application height and y position.
 		pane.setOnMousePressed(m -> {
-			if ((m.isPrimaryButtonDown()) && (!snapped)) {
+			if ((m.isPrimaryButtonDown()) && (!snapped) && resizing) {
 				prevSize.y = stage.getHeight();
 				prevPos.y = stage.getY();
 			}
@@ -581,7 +589,7 @@ public class BorderlessController {
 
 		// Aero Snap Resize.
 		pane.setOnMouseReleased(m -> {
-			if ((MouseButton.PRIMARY.equals(m.getButton())) && (!snapped)) {
+			if (resizing && (MouseButton.PRIMARY.equals(m.getButton())) && (!snapped)) {
 				Rectangle2D screen = Screen.getScreensForRectangle(m.getScreenX(), m.getScreenY(), 1, 1).get(0).getVisualBounds();
 
 				if ((stage.getY() <= screen.getMinY()) && (direction.startsWith("top"))) {
@@ -595,6 +603,8 @@ public class BorderlessController {
 					stage.setY(screen.getMinY());
 					snapped = true;
 				}
+				
+				resizing = false;
 			}
 
 		});
