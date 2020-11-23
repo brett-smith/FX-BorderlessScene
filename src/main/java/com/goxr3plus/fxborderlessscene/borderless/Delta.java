@@ -9,11 +9,16 @@ package com.goxr3plus.fxborderlessscene.borderless;
  * @author Nicolas Senet-Larson
  * @author GOXR3PLUS STUDIO
  */
-class Delta {
+public class Delta {
 	
 	/** The x. */
-	Double x;
+	public Double x;
 	
 	/** The y. */
-	Double y;
+	public Double y;
+
+	@Override
+	public String toString() {
+		return "Delta [x=" + x + ", y=" + y + "]";
+	}
 }
