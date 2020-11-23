@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>uk.co.bithatch</groupId>
 	<artifactId>FX-BorderlessScene</artifactId>
-	<version>5.0.1</version>
+	<version>5.0.3</version>
 	<name>FX-BorderlessScene</name>
 	<description>Undecorated JavaFX Scene with implemented move, resize, minimise, maximise, close and Windows Aero Snap controls. This
 	versions has been modularised so will only work on Java 9 or higher.</description>
@@ -20,7 +21,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<javafx.version>11.0.2</javafx.version>
 	</properties>
-	
+
 	<licenses>
 		<license>
 			<name>The Apache Software License, Version 2.0</name>
@@ -78,18 +79,27 @@
 			</plugin>
 
 			<!-- JavaDoc Plugin -->
+
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>3.1.0</version>
+				<version>3.2.0</version>
 				<executions>
 					<execution>
-						<id>attach-javadocs</id>
+						<id>javadoc-jar</id>
+						<phase>package</phase>
 						<goals>
 							<goal>jar</goal>
 						</goals>
 					</execution>
 				</executions>
+				<configuration>
+					<sourcepath>src/main/java</sourcepath>
+					<includeDependencySources>false</includeDependencySources>
+					<dependencySourceIncludes>
+						<dependencySourceInclude>com.sshtools:*</dependencySourceInclude>
+					</dependencySourceIncludes>
+					<doclint>none</doclint>
+				</configuration>
 			</plugin>
 
 			<!-- Maven Compiler Plugin -->
@@ -130,13 +140,16 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
-				<version>3.0.2</version>
+				<version>3.2.0</version>
 				<configuration>
 					<archive>
 						<manifest>
 							<addClasspath>true</addClasspath>
 							<mainClass>com.goxr3plus.fxborderlessscene.application.Main</mainClass>
 						</manifest>
+						<manifestEntries>
+							<Multi-Release>true</Multi-Release>
+						</manifestEntries>
 					</archive>
 				</configuration>
 			</plugin>
@@ -160,7 +173,7 @@
 					</execution>
 				</executions>
 			</plugin>
-			
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-gpg-plugin</artifactId>
@@ -181,7 +194,7 @@
 					</execution>
 				</executions>
 			</plugin>
-			
+
 			<plugin>
 				<groupId>org.sonatype.plugins</groupId>
 				<artifactId>nexus-staging-maven-plugin</artifactId>
@@ -214,12 +227,12 @@
 		<dependency>
 			<groupId>net.java.dev.jna</groupId>
 			<artifactId>jna</artifactId>
-	        <version>5.3.1</version>
-	    </dependency>
-	    <dependency>
-	        <groupId>net.java.dev.jna</groupId>
-	        <artifactId>jna-platform</artifactId>
-	        <version>5.3.1</version>
-	    </dependency>
+			<version>5.3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>net.java.dev.jna</groupId>
+			<artifactId>jna-platform</artifactId>
+			<version>5.3.1</version>
+		</dependency>
 	</dependencies>
 </project>
