@@ -1,0 +1,21 @@
+{
+    "resources": {
+        "includes": [
+            {
+                "pattern": "\\Qcss/application.css\\E"
+            },
+            {
+                "pattern": "\\Qcss/extra.css\\E"
+            },
+            {
+                "pattern": "\\Qfxml/Borderless.fxml\\E"
+            },
+            {
+                "pattern": "\\Qfxml/MainWindowController.fxml\\E"
+            },
+            {
+                "pattern": "\\Qfxml/TransparentWindow.fxml\\E"
+            }
+        ]
+    }
+}

@@ -6,7 +6,7 @@
 
 	<groupId>uk.co.bithatch</groupId>
 	<artifactId>FX-BorderlessScene</artifactId>
-	<version>5.0.4</version>
+	<version>5.0.6</version>
 	<name>FX-BorderlessScene</name>
 	<description>Undecorated JavaFX Scene with implemented move, resize, minimise, maximise, close and Windows Aero Snap controls. This
 	versions has been modularised so will only work on Java 9 or higher.</description>
@@ -16,10 +16,10 @@
 	<packaging>jar</packaging>
 
 	<properties>
-		<maven.compiler.source>9</maven.compiler.source>
-		<maven.compiler.target>9</maven.compiler.target>
+		<maven.compiler.source>11</maven.compiler.source>
+		<maven.compiler.target>11</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<javafx.version>11.0.2</javafx.version>
+		<javafx.version>17.0.2-ea+2</javafx.version>
 	</properties>
 
 	<licenses>
@@ -82,7 +82,7 @@
 
 			<plugin>
 				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>3.2.0</version>
+				<version>3.3.1</version>
 				<executions>
 					<execution>
 						<id>javadoc-jar</id>
@@ -107,34 +107,6 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.8.0</version>
-				<executions>
-					<execution>
-						<id>compile-java-8</id>
-						<goals>
-							<goal>compile</goal>
-						</goals>
-						<configuration>
-							<encoding>UTF-8</encoding>
-							<source>1.8</source>
-							<target>1.8</target>
-						</configuration>
-					</execution>
-					<execution>
-						<id>compile-java-9</id>
-						<phase>compile</phase>
-						<goals>
-							<goal>compile</goal>
-						</goals>
-						<configuration>
-							<encoding>UTF-8</encoding>
-							<release>9</release>
-							<compileSourceRoots>
-								<compileSourceRoot>${project.basedir}/src/main/java9</compileSourceRoot>
-							</compileSourceRoots>
-							<multiReleaseOutput>true</multiReleaseOutput>
-						</configuration>
-					</execution>
-				</executions>
 			</plugin>
 			<!-- Make this jar executable -->
 			<plugin>
@@ -147,9 +119,6 @@
 							<addClasspath>true</addClasspath>
 							<mainClass>com.goxr3plus.fxborderlessscene.application.Main</mainClass>
 						</manifest>
-						<manifestEntries>
-							<Multi-Release>true</Multi-Release>
-						</manifestEntries>
 					</archive>
 				</configuration>
 			</plugin>
@@ -223,16 +192,6 @@
 			<groupId>org.openjfx</groupId>
 			<artifactId>javafx-fxml</artifactId>
 			<version>${javafx.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>net.java.dev.jna</groupId>
-			<artifactId>jna</artifactId>
-			<version>5.8.0</version>
-		</dependency>
-		<dependency>
-			<groupId>net.java.dev.jna</groupId>
-			<artifactId>jna-platform</artifactId>
-			<version>5.8.0</version>
 		</dependency>
 	</dependencies>
 </project>
