@@ -1,4 +1,6 @@
-package com.goxr3plus.fxborderlessscene.borderless;
+package com.goxr3plus.fxborderlessscene.application;
+
+import com.goxr3plus.fxborderlessscene.borderless.BorderlessScene;
 
 import javafx.scene.Parent;
 import javafx.stage.Stage;

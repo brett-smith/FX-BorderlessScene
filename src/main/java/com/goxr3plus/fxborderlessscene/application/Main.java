@@ -1,7 +1,6 @@
 package com.goxr3plus.fxborderlessscene.application;
 
 import com.goxr3plus.fxborderlessscene.borderless.BorderlessScene;
-import com.goxr3plus.fxborderlessscene.borderless.CustomStage;
 
 import javafx.application.Application;
 import javafx.stage.Stage;

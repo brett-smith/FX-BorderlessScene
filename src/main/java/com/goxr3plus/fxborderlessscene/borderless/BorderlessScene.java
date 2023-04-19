@@ -64,11 +64,17 @@ public class BorderlessScene extends Scene {
 			this.controller.createTransparentWindow(stage);
 
 			// StageStyle
+			var original = stage.getStyle(); 
 			stage.initStyle(stageStyle);
-			if (stageStyle == StageStyle.UTILITY) {
+			if (original == StageStyle.UTILITY) {
 				setSnapEnabled(false);
 				setResizable(false);
 			}
+			else {
+				setResizable(stage.isResizable());
+			}
+			
+			stage.resizableProperty().addListener((c,o,n) -> setResizable(n));
 
 			// Stage
 			this.stage = stage;
