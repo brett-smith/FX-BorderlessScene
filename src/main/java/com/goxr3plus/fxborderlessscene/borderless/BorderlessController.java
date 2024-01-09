@@ -541,8 +541,6 @@ public class BorderlessController {
 				double width = stage.getWidth();
 				double height = stage.getHeight();
 				
-				System.out.println("Direction " + direction);
-
 				/* NOTE: A work around for GTK Linux. If you do not set both
 				 * height and width, gtk will be passed -1 for whatever was not 
 				 * set. This throws an assertion (visible in console output) 
