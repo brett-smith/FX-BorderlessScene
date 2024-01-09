@@ -540,6 +540,20 @@ public class BorderlessController {
 			if (m.isPrimaryButtonDown() && moving) {
 				double width = stage.getWidth();
 				double height = stage.getHeight();
+				
+				System.out.println("Direction " + direction);
+
+				/* NOTE: A work around for GTK Linux. If you do not set both
+				 * height and width, gtk will be passed -1 for whatever was not 
+				 * set. This throws an assertion (visible in console output) 
+				 * which prevents the resize completing correctly. So whenever
+				 * either a height or width alone is changed (i.e. non 
+				 * diagonal resize), then also set the opposite dimension even
+				 * if it has not change.
+				 * 
+				 * NOTE, the resizing is still a bit iffy, but just about
+				 * accetable
+				 */
 
 				// Horizontal resize.
 				if (direction.endsWith("left")) {
@@ -548,6 +562,10 @@ public class BorderlessController {
 					//Check if it violates minimumWidth
 					if (comingWidth > 0 && comingWidth >= stage.getMinWidth()) {
 						stage.setWidth(stage.getX() - m.getScreenX() + stage.getWidth());
+						if(direction.equals("left")) {
+							/* Work around, see above */
+							stage.setHeight(height);
+						}
 						stage.setX(m.getScreenX());
 					}
 
@@ -555,12 +573,20 @@ public class BorderlessController {
 					double comingWidth = width + m.getX();
 
 					//Check if it violates
-					if (comingWidth > 0 && comingWidth >= stage.getMinWidth())
+					if (comingWidth > 0 && comingWidth >= stage.getMinWidth()) {
+						if(direction.equals("right")) {
+							/* Work around, see above */
+							stage.setHeight(height);
+						}
 						stage.setWidth(m.getSceneX());
+					}
 				}
 
 				// Vertical resize.
 				if (direction.startsWith("top")) {
+					if(direction.equals("top")) {
+						stage.setWidth(width);
+					}
 					if (snapped) {
 						stage.setHeight(prevSize.y);
 						snapped = false;
@@ -569,6 +595,9 @@ public class BorderlessController {
 						stage.setY(m.getScreenY());
 					}
 				} else if (direction.startsWith(bottom)) {
+					if(direction.equals(bottom)) {
+						stage.setWidth(width);	
+					}
 					if (snapped) {
 						stage.setY(prevPos.y);
 						snapped = false;
