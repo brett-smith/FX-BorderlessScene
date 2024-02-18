@@ -541,29 +541,14 @@ public class BorderlessController {
 				double width = stage.getWidth();
 				double height = stage.getHeight();
 				
-				/* NOTE: A work around for GTK Linux. If you do not set both
-				 * height and width, gtk will be passed -1 for whatever was not 
-				 * set. This throws an assertion (visible in console output) 
-				 * which prevents the resize completing correctly. So whenever
-				 * either a height or width alone is changed (i.e. non 
-				 * diagonal resize), then also set the opposite dimension even
-				 * if it has not change.
-				 * 
-				 * NOTE, the resizing is still a bit iffy, but just about
-				 * accetable
-				 */
 
 				// Horizontal resize.
 				if (direction.endsWith("left")) {
 					double comingWidth = width - m.getScreenX() + stage.getX();
 
 					//Check if it violates minimumWidth
-					if (comingWidth > 0 && comingWidth >= stage.getMinWidth()) {
+					if (comingWidth > 0 && comingWidth >= stage.getMinWidth() && comingWidth <= stage.getMaxWidth()) {
 						stage.setWidth(stage.getX() - m.getScreenX() + stage.getWidth());
-						if(direction.equals("left")) {
-							/* Work around, see above */
-							stage.setHeight(height);
-						}
 						stage.setX(m.getScreenX());
 					}
 
@@ -571,31 +556,21 @@ public class BorderlessController {
 					double comingWidth = width + m.getX();
 
 					//Check if it violates
-					if (comingWidth > 0 && comingWidth >= stage.getMinWidth()) {
-						if(direction.equals("right")) {
-							/* Work around, see above */
-							stage.setHeight(height);
-						}
-						stage.setWidth(m.getSceneX());
+					if (comingWidth > 0 && comingWidth >= stage.getMinWidth() && comingWidth <= stage.getMaxWidth()) {
+                        stage.setWidth(Math.max(stage.getMinWidth(), m.getSceneX()));
 					}
 				}
 
 				// Vertical resize.
 				if (direction.startsWith("top")) {
-					if(direction.equals("top")) {
-						stage.setWidth(width);
-					}
 					if (snapped) {
 						stage.setHeight(prevSize.y);
 						snapped = false;
 					} else if ((height > stage.getMinHeight()) || (m.getY() < 0)) {
-						stage.setHeight(stage.getY() - m.getScreenY() + stage.getHeight());
+						stage.setHeight(Math.min(stage.getMaxHeight(), stage.getY() - m.getScreenY() + stage.getHeight()));
 						stage.setY(m.getScreenY());
 					}
 				} else if (direction.startsWith(bottom)) {
-					if(direction.equals(bottom)) {
-						stage.setWidth(width);	
-					}
 					if (snapped) {
 						stage.setY(prevPos.y);
 						snapped = false;
@@ -603,10 +578,26 @@ public class BorderlessController {
 						double comingHeight = height + m.getY();
 
 						//Check if it violates
-						if (comingHeight > 0 && comingHeight >= stage.getMinHeight())
-							stage.setHeight(m.getSceneY());
+						if (comingHeight > 0 && comingHeight >= stage.getMinHeight() && comingHeight <= stage.getMaxHeight()) {
+							stage.setHeight(Math.max(stage.getMinHeight(), m.getSceneY()));
+						}
 					}
 
+				}
+
+                /* NOTE: A work around for GTK Linux. If you do not set both
+                 * height and width, gtk will be passed -1 for whatever was not 
+                 * set. This throws an assertion (visible in console output) 
+                 * which prevents the resize completing correctly. So whenever
+                 * either a height or width alone is changed (i.e. non 
+                 * diagonal resize), then also set the opposite dimension even
+                 * if it has not change.
+                 */
+				if((stage.getWidth() != width && stage.getHeight() == height)) {
+				    stage.setHeight(height);
+				}
+				else if(stage.getHeight() != height && stage.getWidth() == width) {
+                    stage.setWidth(width);
 				}
 			}
 		});
